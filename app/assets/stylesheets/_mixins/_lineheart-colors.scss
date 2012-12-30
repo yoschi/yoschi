@@ -1,0 +1,31 @@
+/*=====================================================]
+|
+|    Definitions for the site colors                
+|
+|======================================================]
+*/
+
+/* ---------------------------------------------
+|    Category Colors
+|  =============================================
+*/
+@function category_color($category-name) {
+	@if $category-name == "default"   { @return #dddddd; }
+	@if $category-name == "lineheart" { @return #dddddd; }
+	@if $category-name == "webshop"   { @return #dddddd; }
+	@if $category-name == "education" { @return #8dc06d; }
+	@if $category-name == "hosting"   { @return #a1b8e1; }
+	@if $category-name == "lhsoft"    { @return #f6a95a; }
+}
+
+/* ---------------------------------------------
+|    News Tag colors
+|  =============================================
+*/
+@function tag_color($tag-name) {
+	@if $tag-name == "default"   { @return #e9e9e9; }
+	@if $tag-name == "promotion" { @return #ffbaab; }
+	@if $tag-name == "service"   { @return #d3e4f4; }
+	@if $tag-name == "apple"     { @return #e2e2e2; }
+	@if $tag-name == "important" { @return #ff9682; }
+}

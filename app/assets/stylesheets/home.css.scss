@@ -1,6 +1,14 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "_global-style.scss";
 
-body   { margin:0px; padding:0px; background-color: #eee; }
-canvas { height:100%; width:100%; }
+html{
+	@include position(relative, block, 100%, 100%);
+
+	@include background-image(linear-gradient(top, #fff, #bbb));
+}
+canvas{
+	@include position(relative, block, 300px, 300px);
+	margin : 20px;
+	border: 1px #444 solid;
+
+	@include background-image(linear-gradient(top, #f4f4f4, #fff));
+}

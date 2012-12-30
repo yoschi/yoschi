@@ -1,0 +1,311 @@
+
+// Base color of button.
+//$sb-base-color     : rgba(240, 240, 240, 1);
+
+// Optional secondary color for gradient.
+//$sb-second-color   : rgba(251, 153, 194, 1);
+
+// Border radius of button.
+$sb-border-radius  : 3px;
+
+// Padding that gives button structure.
+$sb-padding        : 0.5em 1.5em;
+
+// Font size.
+$sb-font-size      : 16px;
+
+// Button font color.
+$sb-text-color     : white;
+
+// Style of button text, can be "inset" or "raised" or false.
+$sb-text-style     : "inset";
+
+// Gradient style of button, can be "flat", "glass", "matte", "shiny", or "simple".
+$sb-gradient-style : "simple";
+
+// Automatically generate pseudo state styles.
+$sb-pseudo-states  : true;
+
+/*
+@mixin stk-button_old($sb-base-color) {
+	@include position(relative, inline-block);
+	/*
+	border-top  : 1px solid lighten($sb-base-color, 25%);
+	border-left : 1px solid lighten($sb-base-color, 20%);
+
+	border-bottom : 1px solid darken($sb-base-color, 20%);
+	border-right  : 1px solid darken($sb-base-color, 20%);
+	*/
+	/*
+	$padding-v: 0px;
+	$padding-h: 8px;
+
+	&:before{
+		@include position(absolute, block, 100%, 100%);
+		background-color : shade(darken($sb-base-color,9%),3%);
+		content          : " ";
+		top              : 0px;
+		left             : -1px;
+		padding          : 1px 0px 0px 1px;
+		z-index          : -1;
+		border           : 1px darken($sb-base-color,16%) solid;
+		border-left      : 1px darken($sb-base-color,10%) solid;
+		@include border-radius($sb-border-radius);
+	}
+
+	//@include adjust-font-size-to(13px);
+	line-height : 12px;
+
+	border-top    : 1px darken($sb-base-color,3%) solid;
+	border-left   : 1px darken($sb-base-color,3%) solid;
+	border-right  : 1px lighten($sb-base-color,3%) solid;
+	border-bottom : 1px lighten($sb-base-color,3%) solid;
+
+	margin-top    : 0px;
+	margin-bottom : 1px;
+	color: shade(darken($sb-base-color,30%),35%);
+
+	//border : darken($sb-base-color, 10%) 1px solid;
+	//background-color: $sb-base-color;
+	//@include background-image(linear-gradient(top, lighten($sb-base-color,5%), darken($sb-base-color,2%)));
+
+	@include background-image(linear-gradient(top, lighten($sb-base-color,10%), darken($sb-base-color,4%)));
+	//@include filter-gradient(lighten($sb-base-color,10%), darken($sb-base-color,4%), vertical);
+
+	top: 0px;
+
+	padding: ($padding-v + 1) $padding-h $padding-v;
+
+	text-decoration: none;
+	vertical-align: middle;
+
+	@include border-radius($sb-border-radius);
+
+	&:active {
+		margin-top    : 1px;
+		margin-bottom : 0px;
+
+		background-color : darken($sb-base-color,20%);
+
+		//@include background-image(linear-gradient(top, darken($sb-base-color,1%), darken($sb-base-color,5%)));
+
+		border-top    : 1px darken($sb-base-color,3%) solid;
+		border-left   : 1px darken($sb-base-color,3%) solid;
+		border-right  : 1px lighten($sb-base-color,1%) solid;
+		border-bottom : 1px lighten($sb-base-color,1%) solid;
+	}
+	&:hover {
+		@include background-image(linear-gradient(top, lighten($sb-base-color,7%), darken($sb-base-color,8%)));
+
+		color: shade(darken($sb-base-color,52%),22%);
+
+		border-top    : 1px darken($sb-base-color,4%) solid;
+		border-left   : 1px darken($sb-base-color,4%) solid;
+		border-right  : 1px lighten($sb-base-color,2%) solid;
+		border-bottom : 1px lighten($sb-base-color,2%) solid;
+	}
+	&:active::before {
+		top     : -1px;
+		background-color : shade(darken($sb-base-color,4%),1%);
+	}
+
+	// button structure ($border-radius, $font-size, $sb-padding)
+	// gradient
+
+	@include stk-firefox-fix;
+}
+*/
+
+@mixin stk-button(
+				$sb-base-color: category_color("default"),
+				$sb-button-height: 16px,
+				$padding: 6px
+				) {
+
+	@include position(relative, inline-block);
+	line-height : $sb-button-height;
+	height      : $sb-button-height;
+	z-index     : 0;
+
+	// Text Color, Style & Positioning
+	color: shade(darken($sb-base-color,30%),25%);
+	text-decoration: none;
+	vertical-align: middle;
+
+	// Button Placement
+	margin: 0px 9px 4px 1px;
+	padding: 3px $padding 0px ($padding + 2px);
+
+	// Normal Button State
+	&:before{
+		@include position(absolute, block, 100%, 100%);
+		background-color : shade(darken($sb-base-color,9%),3%);
+		content          : " ";
+		top              : 0px;
+		left             : -1px;
+		padding          : 2px 0px 0px 2px;
+		z-index          : -2;
+		border           : 1px darken($sb-base-color,16%) solid;
+		border-left      : 1px darken($sb-base-color,10%) solid;
+		@include border-radius($sb-border-radius);
+	}
+
+	&:after{
+		@include position(absolute, block, 100%, 100%);
+		content : " ";
+		z-index : -1;
+		top     : 0px;
+		left    : -1px;
+		padding : 0px 0px 0px 1px;
+
+		border-top    : 1px darken($sb-base-color,3%) solid;
+		border-left   : 1px darken($sb-base-color,3%) solid;
+		border-right  : 1px lighten($sb-base-color,3%) solid;
+		border-bottom : 1px lighten($sb-base-color,3%) solid;
+		background-color: $sb-base-color;
+		@include background-image(linear-gradient(top, lighten($sb-base-color,10%), darken($sb-base-color,4%)));
+		@include filter-gradient(lighten($sb-base-color,10%), darken($sb-base-color,4%), vertical);
+		
+		@include border-radius($sb-border-radius);
+	}
+
+	// Button Hover
+	&:hover::after {
+		color: shade(darken($sb-base-color,52%),22%);
+		@include background-image(linear-gradient(top, lighten($sb-base-color,7%), darken($sb-base-color,6%)));
+
+		border-top    : 1px darken($sb-base-color,4%) solid;
+		border-left   : 1px darken($sb-base-color,4%) solid;
+		border-right  : 1px lighten($sb-base-color,2%) solid;
+		border-bottom : 1px lighten($sb-base-color,2%) solid;
+	}
+
+	// Button Press
+	&:active{
+		margin: 1px 9px 3px 1px;
+	}
+	&:active::before {
+		top     : 0px;
+		padding : 1px 0px 0px 2px;
+		background-color : shade(darken($sb-base-color,4%),1%);
+	}
+	&:active::after {
+		margin-top    : 0px;
+
+		@include background-image(linear-gradient(top, darken($sb-base-color,2%), lighten($sb-base-color,4%)));
+		
+		border-top    : 1px darken($sb-base-color,3%) solid;
+		border-left   : 1px darken($sb-base-color,3%) solid;
+		border-right  : 1px lighten($sb-base-color,1%) solid;
+		border-bottom : 1px lighten($sb-base-color,1%) solid;
+	}
+
+	// Firefox Margin & Padding Fix
+	@include stk-firefox-fix;
+}
+
+
+
+@mixin stk-tag(
+				$sb-base-color: category_color("default"),
+				$sb-tag-height: 16px,
+				$padding: 6px
+				) {
+
+	@include position(relative, inline-block);
+	line-height : $sb-tag-height;
+	height      : $sb-tag-height;
+	z-index     : 0;
+
+	// Text Color, Style & Positioning
+	color: shade(darken($sb-base-color,30%),25%);
+	text-decoration: none;
+	vertical-align: middle;
+
+	// Button Placement
+	margin: 0px 9px 4px 1px;
+	padding: 3px $padding 0px ($padding + 2px);
+
+	&:after{
+		@include position(absolute, block, 100%, 100%);
+		content : " ";
+		z-index : -1;
+		top     : 0px;
+		left    : -1px;
+		padding : 0px 0px 0px 1px;
+
+		border-top    : 1px lighten($sb-base-color,6%) solid;
+		border-left   : 1px lighten($sb-base-color,6%) solid;
+		border-right  : 1px lighten($sb-base-color,6%) solid;
+		border-bottom : 1px lighten($sb-base-color,6%) solid;
+
+		background-color: $sb-base-color;
+		@include background-image(linear-gradient(top, lighten($sb-base-color,3%), darken($sb-base-color,5%)));
+		@include filter-gradient(lighten($sb-base-color,3%), darken($sb-base-color,5%), vertical);
+		
+		@include border-radius($sb-border-radius);
+	}
+
+	// Firefox Margin & Padding Fix
+	@include stk-firefox-fix;
+}
+
+
+
+
+@mixin stk-menu{
+	$stk-menu-color : #eee;	
+
+	&:before{
+		position : absolute;
+		@include background(image-url("patterns/retina_dust.png"), $stk-menu-color);
+
+		content  : "";
+		display  : block;
+		width    : 100%;
+		height   : 100%;
+		left     : -120px;
+		z-index  : -1;
+	}
+
+	font-size : 14px;
+
+	border : 1px lighten($stk-menu-color,1%) solid;
+
+	margin-top    : 0px;
+	margin-bottom : 1px;
+	color: #000;
+
+	border : darken($sb-base-color, 10%) 1px solid;
+	background-color: $stk-menu-color;
+	//@include background-image(linear-gradient(top, lighten($sb-base-color,5%), darken($sb-base-color,2%)));
+
+
+		background-color : darken($stk-menu-color,80%);
+
+	top: 0px;
+
+	padding: 0px;
+
+	@include border-radius(0px 0px 2px 2px);
+}
+
+
+
+
+
+// Structure for a sassy button
+@mixin stk-button-structure{
+	//font-size: $font-size;
+	//padding: $padding;
+	// structure
+	// border-radius
+}
+
+// Fix for the Firefox padding issue
+@mixin stk-firefox-fix{
+	&::-moz-focus-inner{
+		padding: 0 !important;
+		margin: -1px !important;
+	}
+}

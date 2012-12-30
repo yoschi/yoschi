@@ -1,0 +1,68 @@
+/*=====================================================]
+|
+|    Compass Stylesheet Basis
+|   ---------------------------------
+|    Building the base-style for the site  
+|    Centralize @import's                  
+|
+|======================================================]
+| Import this file using the following HTML or equivalent: 
+| <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+*/
+
+/* =============================================
+|
+|    Important Workflow Notes
+|
+|  =============================================
+ > Elements which include user-content or imported content need an "overflow:hidden".
+|  The clearfix() is the best option also be used.
+*/
+
+
+/* ---------------------------------------------
+|    Compass Library and Mixins
+|  =============================================
+*/
+@import "compass";
+@import "compass/css3/user-interface";
+$experimental-support-for-svg: true; // create svg's for gradients (IE9-fix)
+$legacy-support-for-ie: true;        // enable support for older versions of IE
+
+
+/* ---------------------------------------------------------
+|    Blueprint Framework, for using Grid-Layout & Clearfix
+|  =========================================================
+*/
+// Import all the default blueprint modules so that we can access their mixins.
+@import "blueprint";
+// Import the liquid module
+@import "blueprint/liquid";
+$blueprint-liquid-grid-width: 4%; // set our grid, results in 20 columns
+
+
+/* ---------------------------------------------
+|    Small Helpers to make code more compact
+|  =============================================
+*/
+@import "_helpers/_responsive-design.scss"; // Functions related to responsive design
+
+
+/* ---------------------------------------------
+|    Mixins for usage everywhere
+|  =============================================
+*/
+@import "_mixins/_general.scss";      // different mixins for global use
+@import "_mixins/_lineheart-colors.scss"; // Functions related to responsive design
+
+@import "_mixins/_stk-buttons.scss";  // button creation
+@import "_mixins/_specialFX.scss";    // special effects to enhance experience
+
+
+/* ------------------------------------------------------
+|    Set typography defaults, vertical rythm
+|  ======================================================
+*/
+$base-font-size   : 14px;
+$base-line-height : 23px;
+

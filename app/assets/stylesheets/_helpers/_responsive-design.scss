@@ -1,0 +1,140 @@
+/*=====================================================]
+|
+|    Responsive Design Helpers                 
+|
+|======================================================]
+*/ $default-device : "smart";
+
+/* ------------------------------------------------
+|    Helper for shorter declaration of rwd-values
+|  ================================================
+|    (see below for usage examples)
+*/
+@function result_from_target($target, $tiny,$smart,$tabletsmall,$tabletlarge,$regular,$wide) {
+	@if $target == "tiny"        { @return $tiny;        }
+	@if $target == "smart"       { @return $smart;       }
+	@if $target == "tabletsmall" { @return $tabletsmall; }
+	@if $target == "tabletlarge" { @return $tabletlarge; }
+	@if $target == "regular"     { @return $regular;     }
+	@if $target == "wide"        { @return $wide;        }
+}
+
+/* ---------------------------------------------
+|    Page Width for devices
+|  =============================================
+*/
+@function siteWidth($target:$default-device) {
+	$pwidth-small : 98%;
+
+	@return result_from_target( $target,
+		96%,
+		96%,
+		96%,
+		98%,
+		950px,
+		1180px	
+	);
+}
+
+/* ---------------------------------------------
+|    Site margin
+|  =============================================
+*/
+@function siteMargin($target:$default-device) {
+	$pwidth-margin : 1%;
+
+	@return result_from_target( $target,
+		2%,
+		2%,
+		2%,
+		1%,
+		auto,
+		auto	
+	);
+}
+
+/* ---------------------------------------------
+|    Header height
+|  =============================================
+*/
+@function headerHeight($target:$default-device) {
+	$base-height : 140px;
+
+	@return result_from_target( $target,
+		$base-height - 76px,
+		$base-height - 60px,
+		$base-height - 50px,
+		$base-height - 50px,
+		$base-height - 10px,
+		$base-height	
+	);
+}
+
+/* ---------------------------------------------
+|    Header Menu height
+|  =============================================
+*/
+@function headerMenuHeight($target:$default-device) {
+	$base-menu-height : 30px;
+
+	@return result_from_target( $target,
+		$base-menu-height + 4px,
+		$base-menu-height + 4px,
+		$base-menu-height + 4px,
+		$base-menu-height + 4px,
+		$base-menu-height,
+		$base-menu-height	
+	);
+}
+
+/* ---------------------------------------------
+|    Media Query Breakpoints
+|  =============================================
+*/
+@function mediaBreakpoint($target:$default-device) {
+	@return result_from_target( $target,
+		240px,  // very small screen devices like older Nokia or Android phones
+		305px,  // 320px+ devices  : iPhone, Google Nexus
+		465px,  // 480px+ devices  : smaller Tablets like Galaxy Tab 7"
+		753px,  // 768px+ devices  : iPad, Nexus 7
+		960px,  // 840px+ devices  : MacBook, Ultrabook
+		1260px  // large computers : 27" iMac, Surface, 1080p TV's
+	);
+}
+
+/* ---------------------------------------------
+|    Set Media Query Definitions
+|  =============================================
+| Resources:
+| } Complete Idiot's Guide to Viewport and Media Queries:
+|    https://docs.google.com/present/view?id=dkx3qtm_22dxsrgcf4
+|    use max-device-width instead of max-width to target devices instead of resolution
+| } Search Google for "sass media queries @content"
+| 
+*/
+@mixin rwd($media) {
+	// rwd = responsive web design
+	@if $media      == "tiny" {
+		@media only screen and (max-width: mediaBreakpoint("smart"))
+		{ @content; } }
+
+	@else if $media == "smart" {
+		@media only screen and (min-width: mediaBreakpoint("smart") + 1)       and (max-width: mediaBreakpoint("tabletsmall"))
+		{ @content; } }
+
+	@else if $media == "tabletsmall" {
+		@media only screen and (min-width: mediaBreakpoint("tabletsmall") + 1) and (max-width: mediaBreakpoint("tabletlarge"))
+		{ @content; } }
+
+	@else if $media == "tabletlarge" {
+		@media only screen and (min-width: mediaBreakpoint("tabletlarge") + 1) and (max-width: mediaBreakpoint("regular"))
+		{ @content; } }
+
+	@else if $media == "regular" {
+		@media only screen and (min-width: mediaBreakpoint("regular") + 1)     and (max-width: mediaBreakpoint("wide"))
+		{ @content; } }
+
+	@else if $media == "wide" {
+		@media only screen and (min-width: mediaBreakpoint("wide"))
+		{ @content; } }
+}

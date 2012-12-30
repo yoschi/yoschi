@@ -1,0 +1,70 @@
+/*=====================================================]
+|
+|    General mixins to use throughout the site                 
+|
+|======================================================]
+*/
+
+/* ---------------------------------------------
+|    Generate font-style
+|  =============================================
+*/
+@mixin generateFontStyle{
+	// uses Typekit.com font "Proxima Nova"
+	font-family : 'proxima-nova', 'Helvetica Neue', Arial, Helvetica, sans-serif;;
+	font-weight : normal;
+	//font-size   : 15px;
+	color       : #222;
+}
+
+/* ---------------------------------------------
+|    GPU trigger for webkit-browsers
+|  =============================================
+*/
+@mixin enableWebkitGPU{
+	// trigger for enabling the graphical processing for webit-browsers
+	-webkit-perspective: 0;
+	-webkit-backface-visibility: hidden;
+}
+
+/* ----------------------------------------------------
+|    Clearfix Alternative
+|  ====================================================
+|   Has advantage of allowing positioned elements to
+|   hang outside the bounds of the container.
+|   see : http://stackoverflow.com/questions/211383/which-method-of-clearfix-is-best
+|   or  : http://www.positioniseverything.net/easyclearing.html
+
+|   Regular clearfix() fills container to hold everything
+|   inside, but cuts off outbound positioned elements
+|   because of the included "overflow:hidden" property.
+*/ 
+@mixin clearfixOutbound{
+	display: inline-block; // for IE/Mac
+
+	&:after {
+		content: " ";
+		display: block;
+		height: 0;
+		clear: both;
+		overflow: hidden;
+		visibility: hidden;
+	}
+
+	display: block; // resets display for IE/Win
+}
+
+
+/* ----------------------------------------------------
+|    quickly declare a positioned Element
+|  ====================================================
+*/ 
+@mixin position($position: absolute, $display: block, $width: "", $height: ""){
+	position : $position;
+	display  : $display;
+	margin   : 0px;
+	padding  : 0px;
+	@if $width  != "" { width  : $width;  }
+	@if $height != "" { height : $height; }
+}
+
