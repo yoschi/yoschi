@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 
-//= require home
+//= require polyfill-ranimframe
 //= require live
+//= require home
+//= require animation

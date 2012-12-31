@@ -5,10 +5,43 @@ html{
 
 	@include background-image(linear-gradient(top, #fff, #bbb));
 }
-canvas{
-	@include position(relative, block, 300px, 300px);
-	margin : 20px;
-	border: 1px #444 solid;
+#scene-parent{
+	@include position(absolute, block, 70%, 70%);
+	z-index : 1;
+	margin  : 5%;
+	//border  : 1px #444 solid;
+	@include background-image(linear-gradient(top, #aaa, #fff));
+	float   : left;
+	//@include clearfix;
 
-	@include background-image(linear-gradient(top, #f4f4f4, #fff));
+	//@include background-image(linear-gradient(top, #f4f4f4, #fff));
 }
+#scene-wrapper{
+	@include position(relative, block, 80%, 80%);
+	//z-index : 1;
+	margin  : 5%;
+	//border  : 1px #444 solid;
+	@include background-image(linear-gradient(top, #fff, #bbb));
+	float   : left;
+
+	//@include background-image(linear-gradient(top, #f4f4f4, #fff));
+}
+#scene{
+	@include position(relative, block, 80%, 80%);
+	margin  : 5%;
+	@include background-image(linear-gradient(top, #aaa, #fff));
+	//border  : 1px #444 solid;
+	float   : left;
+}
+
+canvas{
+	image-rendering: optimizeSpeed;             // Older versions of FF
+	image-rendering: -moz-crisp-edges;          // FF 6.0+
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast; // Webkit
+	                                            //  (Safari now, Chrome soon)
+	image-rendering: optimize-contrast;         // Possible future browsers.
+	-ms-interpolation-mode: nearest-neighbor;   // IE
+
+}
+

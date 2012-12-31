@@ -1,23 +1,23 @@
 $(window).load(function() {
-	console.log('stuff');
-	animation = new Animation();
+	animation = new Animation( document.getElementById('scene'), document.getElementById('scene-parent') );
+
+	// shim layer with setTimeout fallback
+	window.requestAnimFrame = (function(){
+	  return  window.requestAnimationFrame       || 
+	          window.webkitRequestAnimationFrame || 
+	          window.mozRequestAnimationFrame    || 
+	          window.oRequestAnimationFrame      || 
+	          window.msRequestAnimationFrame     || 
+	          function( callback ){
+	            window.setTimeout(callback, 1000 / 60);
+	          };
+	})();
+
+	(function animloop(){
+	  requestAnimFrame(animloop);
+	  animation.render();
+	})();
+	// place the rAF *before* the render() to assure as close to 
+	// 60fps with the setTimeout fallback.
+
 });
-
-function Animation(){
-	this.canvas = document.getElementById('scene');
-	this.ctx    = this.canvas.getContext('2d');
-	console.log('stuff');
-
-	this.Display();
-}
-
-Animation.prototype.Display = function(){
-	this.ctx.fillStyle = "rgb(200, 0, 0)";
-	this.ctx.fillRect(10, 10, 55, 50);
-
-	this.ctx.beginPath();
-	this.ctx.moveTo(75,50);
-	this.ctx.lineTo(100,75);
-	this.ctx.lineTo(100,25);
-	this.ctx.fill();
-}
